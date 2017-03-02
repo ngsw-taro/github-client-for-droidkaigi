@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/user_avatar_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        fresco:roundAsCircle="true" />
+
+    <TextView
+        android:id="@+id/repository_name_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/user_avatar_view"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Repository name" />
+
+    <TextView
+        android:id="@+id/repository_description_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/repository_name_view"
+        android:layout_below="@id/repository_name_view"
+        android:maxLines="1"
+        android:textSize="12sp"
+        tools:text="Repository description" />
+
+    <TextView
+        android:id="@+id/repository_language_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/repository_name_view"
+        android:layout_below="@id/repository_description_view"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        tools:text="Kotlin" />
+
+    <TextView
+        android:id="@+id/repository_stargazer_count_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/repository_language_view"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@id/repository_language_view"
+        tools:text="★123" />
+</RelativeLayout>
