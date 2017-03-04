@@ -1,0 +1,33 @@
+package sample.githubclient
+
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import sample.githubclient.model.Repository
+
+class RepositoryActivity : AppCompatActivity() {
+
+    companion object {
+        /*
+         * exercise 4: 起動用インテント生成関数を提供しよう
+         * TODO()を削除して、コードを書いてください。
+         */
+        fun intent(context: Context, repository: Repository): Intent = TODO()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_repository)
+
+        /*
+         * exercise 6: リポジトリの情報を表示しよう
+         * インテントから受け取ったリポジトリの情報をビューに反映しましょう。
+         * 対象ビューは下記のとおりです。
+         *  * RepositoryView型 R.id.repository_view
+         *  * WebView型 R.id.web_view
+         *
+         *  （タイトルとしてリポジトリのフルネームを入れると良いかも！）
+         */
+    }
+}
