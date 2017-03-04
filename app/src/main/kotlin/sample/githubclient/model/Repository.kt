@@ -8,8 +8,8 @@ data class Repository(val id: Long,
                       val description: String,
                       val htmlUrl: String,
                       val stargazersCount: Int,
-                      val language: String,
-                      val owner: User) : Parcelable {
+                      val owner: User,
+                      val language: String? = null) : Parcelable {
 
     companion object {
         @JvmField
@@ -20,8 +20,8 @@ data class Repository(val id: Long,
                             source.readString(),
                             source.readString(),
                             source.readInt(),
-                            source.readString(),
-                            source.readParcelable(Repository::class.java.classLoader))
+                            source.readParcelable(Repository::class.java.classLoader),
+                            source.readString())
 
             override fun newArray(size: Int): Array<out Repository?> = kotlin.arrayOfNulls(size)
         }
@@ -35,7 +35,7 @@ data class Repository(val id: Long,
         dest.writeString(description)
         dest.writeString(htmlUrl)
         dest.writeInt(stargazersCount)
-        dest.writeString(language)
         dest.writeParcelable(owner, flags)
+        dest.writeString(language)
     }
 }
