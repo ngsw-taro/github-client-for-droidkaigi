@@ -19,4 +19,10 @@ package sample.githubclient.model
  * Userクラスが参考になります。
  */
 
-class Repository
+class Repository(val id: Long,
+                 val fullName: String,
+                 val description: String,
+                 val htmlUrl: String,
+                 val stargazersCount: Int,
+                 val owner: User,
+                 val language: String?)
