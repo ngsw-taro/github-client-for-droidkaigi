@@ -32,11 +32,11 @@ class RepositoryView : FrameLayout {
 
     fun setRepository(repository: Repository) {
         repository.run {
-//            userAvatarView.setImageURI(owner.avatarUrl)
-//            repositoryNameView.text = fullName
-//            repositoryDescriptionView.text = description
-//            repositoryLanguageView.text = language
-//            repositoryStargazerCountView.text = context.getString(R.string.stargazer_count, stargazersCount)
+            userAvatarView.setImageURI(owner.avatarUrl)
+            repositoryNameView.text = fullName
+            repositoryDescriptionView.text = description
+            repositoryLanguageView.text = language
+            repositoryStargazerCountView.text = context.getString(R.string.stargazer_count, stargazersCount)
         }
     }
 }
