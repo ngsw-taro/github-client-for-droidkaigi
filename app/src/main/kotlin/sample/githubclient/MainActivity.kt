@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import sample.githubclient.client.GithubClient
 import sample.githubclient.model.Page
 import sample.githubclient.model.Repository
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,8 +29,12 @@ class MainActivity : AppCompatActivity() {
      * exercise 8で生成したGithubClientのコードの削除を忘れずに。
      */
 
+    @Inject
+    lateinit var githubClient: GithubClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as GithubClientApp).component.inject(this)
         setContentView(R.layout.activity_main)
 
         val listAdapter = RepositoryListAdapter(this)
@@ -83,7 +88,7 @@ class MainActivity : AppCompatActivity() {
          * * listAdapter.notifyDataSetChanged()を呼び出してリスト表示を更新します
          */
 
-        val githubClient = retrofit.create(GithubClient::class.java)
+        /* githubClientを削除！！ */
 
         val searchEditText = findViewById(R.id.search_edit_text) as EditText
         val searchButton = findViewById(R.id.search_button) as Button
