@@ -5,12 +5,17 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.Toast
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import sample.githubclient.client.GithubClient
+import sample.githubclient.model.Page
 import sample.githubclient.model.Repository
-import sample.githubclient.model.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,15 +44,8 @@ class MainActivity : AppCompatActivity() {
          *
          * コード挿入位置↓
          */
-        val user = User(1, "ntaro", "https://avatars2.githubusercontent.com/u/885672")
-        val repository = Repository(1,
-                "ntaro/github-client-for-droidkaigi",
-                "sample project",
-                "https://github.com/ntaro/github-client-for-droidkaigi",
-                100,
-                user,
-                "Kotlin")
-        listAdapter.repositories = listOf(repository, repository, repository)
+
+        /* ダミーデータを削除！！ */
 
         val listView = findViewById(R.id.list_view) as ListView
         listView.adapter = listAdapter
@@ -85,12 +83,25 @@ class MainActivity : AppCompatActivity() {
          * * listAdapter.notifyDataSetChanged()を呼び出してリスト表示を更新します
          */
 
-//        val githubClient =
+        val githubClient = retrofit.create(GithubClient::class.java)
 
         val searchEditText = findViewById(R.id.search_edit_text) as EditText
         val searchButton = findViewById(R.id.search_button) as Button
         searchButton.setOnClickListener {
             val query = searchEditText.text.toString()
+            githubClient.search(query).enqueue(object : Callback<Page<Repository>> {
+                override fun onFailure(call: Call<Page<Repository>>, t: Throwable) {
+                    // ここからMainActivity自身のインスタンスを参照するには
+                    // this@MainActivityと記述します。
+                    Toast.makeText(this@MainActivity, "エラー", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(call: Call<Page<Repository>>, response: Response<Page<Repository>>) {
+                    val page = response.body()
+                    listAdapter.repositories = page.items
+                    listAdapter.notifyDataSetChanged()
+                }
+            })
         }
 
         /*
