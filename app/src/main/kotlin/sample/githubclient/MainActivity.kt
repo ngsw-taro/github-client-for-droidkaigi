@@ -9,8 +9,8 @@ import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import sample.githubclient.client.GithubClient
-import javax.inject.Inject
+import sample.githubclient.model.Repository
+import sample.githubclient.model.User
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,6 +39,15 @@ class MainActivity : AppCompatActivity() {
          *
          * コード挿入位置↓
          */
+        val user = User(1, "ntaro", "https://avatars2.githubusercontent.com/u/885672")
+        val repository = Repository(1,
+                "ntaro/github-client-for-droidkaigi",
+                "sample project",
+                "https://github.com/ntaro/github-client-for-droidkaigi",
+                100,
+                user,
+                "Kotlin")
+        listAdapter.repositories = listOf(repository, repository, repository)
 
         val listView = findViewById(R.id.list_view) as ListView
         listView.adapter = listAdapter
