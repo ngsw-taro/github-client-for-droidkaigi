@@ -60,6 +60,11 @@ class MainActivity : AppCompatActivity() {
          *
          * コード挿入位置↓
          */
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val repository = listAdapter.repositories[position]
+            val intent = RepositoryActivity.intent(this, repository)
+            startActivity(intent)
+        }
 
         val gson = GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
