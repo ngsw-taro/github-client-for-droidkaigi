@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    /**
+    /*
      * exercise 9: GithubClientをインジェクトしよう
      * DaggerでGithubClientをインジェクトしましょう。
      * GithubClientをプロパティとして保持し、
-     * (application as GithubClientApp).inject(this)を呼んでインジェクト。
+     * (application as GithubClientApp).component.inject(this)を呼んでインジェクト。
      *
      * exercise 8で生成したGithubClientのコードの削除を忘れずに。
      */
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
          *
          * ヒント
          * asyncブロックの中でawaitブロックが使えます。
-         * awaitブロック内は非同期に実行されます。
+         * awaitブロック内では時間のかかる処理を行い、結果が返されるまで待ちます。
          */
     }
 }
