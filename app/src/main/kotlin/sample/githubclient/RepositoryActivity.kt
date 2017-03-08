@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.webkit.WebView
 import sample.githubclient.model.Repository
 
 class RepositoryActivity : AppCompatActivity() {
@@ -35,5 +36,13 @@ class RepositoryActivity : AppCompatActivity() {
          *
          *  （タイトルとしてリポジトリのフルネームを入れると良いかも！）
          */
+        val repository: Repository = intent.getParcelableExtra("repository") ?: throw IllegalStateException("repositoryがないよ")
+        title = repository.fullName
+
+        val repositoryView = findViewById(R.id.repository_view) as RepositoryView
+        repositoryView.setRepository(repository)
+
+        val webView = findViewById(R.id.web_view) as WebView
+        webView.loadUrl(repository.htmlUrl)
     }
 }
