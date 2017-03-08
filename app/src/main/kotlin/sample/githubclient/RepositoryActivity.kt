@@ -13,7 +13,13 @@ class RepositoryActivity : AppCompatActivity() {
          * exercise 4: 起動用インテント生成関数を提供しよう
          * TODO()を削除して、コードを書いてください。
          */
-        fun intent(context: Context, repository: Repository): Intent = TODO()
+        fun intent(context: Context, repository: Repository): Intent =
+                Intent(context, RepositoryActivity::class.java)
+                        .putExtra("repository", repository)
+
+//        fun intent(context: Context, repository: Repository): Intent =
+//                context.intent<Repository>()
+//                        .putExtra("repository", repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
