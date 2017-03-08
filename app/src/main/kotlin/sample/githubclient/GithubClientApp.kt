@@ -7,11 +7,12 @@ import sample.githubclient.dagger.DaggerAppComponent
 
 class GithubClientApp : Application() {
 
-    var component: AppComponent? = null
+    val component: AppComponent by lazy {
+        DaggerAppComponent.create()
+    }
 
     override fun onCreate() {
         super.onCreate()
         Fresco.initialize(this)
-        component = DaggerAppComponent.create()
     }
 }
